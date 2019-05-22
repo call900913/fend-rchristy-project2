@@ -26,6 +26,50 @@ function shuffle(array) {
 }
 
 
+const selection = document.querySelector('.deck');
+
+selection.addEventListener('click', function(evt) {
+  evt.target.classList.toggle('open');
+  evt.target.classList.toggle('show');
+  if (evt.target.nodeName.toLowerCase() === 'i') {
+    evt.target.parentElement.classList.toggle('open');
+    evt.target.parentElement.classList.toggle('show');
+  }
+  console.log(evt.target.className);
+});
+
+
+
+// store the name of the icon
+
+
+// compare it with the next icon
+
+
+// what happens if they match?
+// match gets toggleed open and it no longer responds to clicks.
+
+// what happens if they dont' match?
+// 'open show' gets toggled off
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)

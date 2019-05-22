@@ -28,17 +28,94 @@ function shuffle(array) {
 
 const selection = document.querySelector('.deck');
 
-selection.addEventListener('click', function(evt) {
+let storage = [];
+let score = 1;
+
+function runGame(evt) {
   evt.target.classList.toggle('open');
   evt.target.classList.toggle('show');
   if (evt.target.nodeName.toLowerCase() === 'i') {
     evt.target.parentElement.classList.toggle('open');
     evt.target.parentElement.classList.toggle('show');
   }
-  console.log(evt.target.className);
-});
+
+  storage.push(evt.target.firstElementChild);
+  console.log(storage.length);
+
+  setTimeout(function() {
+    if (storage.length >= 2) {
+      if (storage[0].classList[1] !== storage[1].classList[1]) {
+        storage[0].parentElement.classList.toggle('open');
+        storage[0].parentElement.classList.toggle('show');
+        storage[1].parentElement.classList.toggle('open');
+        storage[1].parentElement.classList.toggle('show');
+      } else {
+        storage[0].parentElement.classList.toggle('match');
+        storage[1].parentElement.classList.toggle('match');
+        score += 1;
+      }
+      storage.length = 0;
+      if (score === 8) {
+        alert('You won');
+        selection.removeEventListener('click', runGame);
+      }
+      console.log(storage);
+    }
+  }, 900);
+};
+
+selection.addEventListener('click', runGame);
 
 
+
+
+
+
+
+/*
+
+.classList[1]
+
+if (storage.length > 0) {
+  if (evt.target.firstElementChild.classList[1] !== storage[0]) {
+    evt.target.classList.toggle('open');
+    evt.target.classList.toggle('show');
+  }
+}
+
+The user clicks, the card shows up.
+
+Then the name is saved
+
+Now you compare it with the name inside there if hte length is 1.
+
+
+  console.log(typeof(evt.target.classList[0])); // string
+
+
+
+
+
+
+const test1 = document.querySelector('.fa-diamond');
+console.log(test1.className); // returns a string
+console.log(test1.classList); // returns a DOMTokenList -- it's an array-like structure
+
+
+*/
+
+
+/*
+
+
+1. They click on something
+
+2. then they click on another square
+
+3. the thing then gets matched.
+
+
+*/
 
 // store the name of the icon
 

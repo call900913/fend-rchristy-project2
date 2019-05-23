@@ -1,20 +1,13 @@
 # Memory Game Project
 
-## Table of Contents
+Hello.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This project is an example of a Memory Game for you to play.
 
-## Instructions
+This project includes HTML and CSS that was originally given by Udacity's @RichardKalehoff.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+I'm responsible for the `app.js` file in the `js` folder that powers its functionality.
 
-To get started, open `js/app.js` and start building out the app's functionality
+You can visit the app by visiting https://call900913.github.io/fend-rchristy-project1/
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Cheers!

@@ -90,76 +90,83 @@ function newGame() {
   deckShuffle();
 };
 
+// turn cards' faces
+function toggleCard(evt) {
+  evt.target.classList.toggle('open');
+  evt.target.classList.toggle('show');
+  if (evt.target.nodeName.toLowerCase() === 'i') {
+    evt.target.parentElement.classList.toggle('open');
+    evt.target.parentElement.classList.toggle('show');
+  }
+  if (evt.target.firstElementChild) {
+    storage.push(evt.target.firstElementChild);
+  }
+};
+
+function endGame() {
+  selection.removeEventListener('click', runGame);
+  let time2 = minutes * 60 + seconds;
+  proceed = confirm(`\
+  Congratulations! ${starCount} stars out of 3! \n\
+  And it took you ${time2} seconds to win the game!\n\
+  Click OK to start a new game.\n\
+  Click Cancel to stay on the current page.`);
+  if (proceed) {
+    selection.addEventListener('click', runGame);
+    newGame();
+  } else {
+    window.clearInterval(interval);
+  }
+};
+
+// compare the two results
+function twoCardHandler() {
+  if (storage[0].classList[1] !== storage[1].classList[1]) {
+    storage[0].parentElement.classList.toggle('open');
+    storage[0].parentElement.classList.toggle('show');
+    storage[1].parentElement.classList.toggle('open');
+    storage[1].parentElement.classList.toggle('show');
+  } else {
+    storage[0].parentElement.classList.toggle('match');
+    storage[1].parentElement.classList.toggle('match');
+    score += 1;
+  }
+  count++
+  storage.length = 0;
+};
 
 function runGame(evt) {
   if (evt.target.className !== 'deck') {
 
     // start the stopwatch
     if (count2 === 0) {
-      console.log('The count is: ' + count);
       interval = window.setInterval(stopWatch, 1000);
       count2++;
-    }
+    };
 
     // turn cards' faces
     if (storage.length < 2) {
-      evt.target.classList.toggle('open');
-      evt.target.classList.toggle('show');
-      if (evt.target.nodeName.toLowerCase() === 'i') {
-        evt.target.parentElement.classList.toggle('open');
-        evt.target.parentElement.classList.toggle('show');
-      }
-      if (evt.target.firstElementChild) {
-        storage.push(evt.target.firstElementChild);
-      }
-    }
-    // compare the two results
+      toggleCard(evt);
+    };
 
     setTimeout(function() {
-      if (storage.length >= 2) {
-        if (storage[0].classList[1] !== storage[1].classList[1]) {
-          storage[0].parentElement.classList.toggle('open');
-          storage[0].parentElement.classList.toggle('show');
-          storage[1].parentElement.classList.toggle('open');
-          storage[1].parentElement.classList.toggle('show');
-        } else {
-          storage[0].parentElement.classList.toggle('match');
-          storage[1].parentElement.classList.toggle('match');
-          score += 1;
-        }
-        storage.length = 0;
-      }
+      // compare the two results
+      if (storage.length === 2) {
+        twoCardHandler()
+      };
 
-      count++;
-      console.log('count is: '+count);
       document.querySelector('.moves').textContent = 'Number of moves: ' + count;
-      if (count === 64) {
+      if (((count === 8) || (count === 16)) && starCount > 0) {
         document.querySelector('li').remove();
         starCount -= 1;
-      } else if (count === 96) {
-        document.querySelector('li').remove();
-        starCount -= 1;
-      }
+      };
 
       if (score === 8) {
-        selection.removeEventListener('click', runGame);
-        let time2 = minutes * 60 + seconds;
-        proceed = confirm(`\
-        Congratulations! ${starCount} stars out of 3! \n\
-        And it took you ${time2} seconds to win the game!\n\
-        Click OK to start a new game.\n\
-        Click Cancel to stay on the current page.`);
-        if (proceed) {
-          selection.addEventListener('click', runGame);
-          newGame();
-        } else {
-          window.clearInterval(interval);
-        }
-      }
+        endGame();
+      };
+    }, 900);
 
-    }, 800);
-
-  }
+  };
 };
 
 

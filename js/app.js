@@ -64,7 +64,7 @@ function stopWatch() {
 };
 
 
-function resetFunc() {
+function newGame() {
   score = 0;
   storage = [];
   seconds = 0;
@@ -144,7 +144,7 @@ function runGame(evt) {
         Click OK to start a new game.\n\
         Click Cancel to stay on the current page.`);
         if (proceed) {
-          resetFunc();
+          newGame();
         } else {
           window.clearInterval(interval);
         }
@@ -156,204 +156,10 @@ function runGame(evt) {
 };
 
 // add event listener to the reset button
-resetBtn.addEventListener('click', resetFunc);
+resetBtn.addEventListener('click', newGame);
 
 // add event listener to the cards
 selection.addEventListener('click', runGame);
-
-//
-// .forEach(element => console.log(element.innerHTML));
-
-
-
-
-
-
- //
-
-
-
-
-
-
-/*
-RESET FUNCTIONALITY
-
-document.querySelectorAll('.card').forEach(elenent => element.className = "card");
-
---------------------------------------------------
-// might want to add pause
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
-
-function stopWatch() {
-
-  seconds++;
-
-  if (seconds % 60 === 0) {
-    seconds = 0;
-    minutes++;
-
-    if (minutes % 60 ===0) {
-      minutes = 0;
-      hours++;
-    }
-  }
-  document.getElementById('display').textContent = hours.padStart(2, '0') + ":" + minutes.padStart(2, '0') + ":" + seconds.padStart(2, 0);
-}
-
-window.setInterval(stopWatch, 1000);
-
-
-
-HTML:
-
-<div class="swContainer">
-  <div id="display">
-    00:00:00
-  </div>
-
-  <div  class="buttons">
-    <button id="startstop">start/stop<button> <button id="swreset">reset<button>
-  </div>
-</div>
-
-
-
-.container {
-  height: 300px;
-  width: 100%;
-}
-
-
-#display {
-  width: 100%;
-
-}
-
-
-.buttons {
-
-}
-
-confirm("
-
-Click OK to start a new game.
-");
-
-*/
-
-
-
-
-
-/*
-
-1.
-• the game randomly  shuffles the cards
-
-2. (DONE)
-• modal to ask if user wants to play again?
-  prompt or a couple of yes-no buttons.
-• tells the user also how much time it  took to win the game.
-• what the star rating is
-
-3. (DONE)
-• a restart button to reset the game board, the timer, star rating.
-
-4. (DONE)
-• game displays a star rating that reflects a player's performance.
-• after a number of certain moves, it should  change to a lower star rating.
-
-5. (DONE)
-• implement hte move counter that displays the number of moves the user has made.
-
-6. (DONE)
-• display timer that stops when the player wins.
-
-
-
-code for timer:
-
-window.setInterval(stopWatch, 1000);
-
-consider .padStart();
-
-
-
-
-
-
-
-
-
-
-
-.classList[1]
-
-if (storage.length > 0) {
-  if (evt.target.firstElementChild.classList[1] !== storage[0]) {
-    evt.target.classList.toggle('open');
-    evt.target.classList.toggle('show');
-  }
-}
-
-The user clicks, the card shows up.
-
-Then the name is saved
-
-Now you compare it with the name inside there if hte length is 1.
-
-
-  console.log(typeof(evt.target.classList[0])); // string
-
-
-
-
-
-
-const test1 = document.querySelector('.fa-diamond');
-console.log(test1.className); // returns a string
-console.log(test1.classList); // returns a DOMTokenList -- it's an array-like structure
-
-
-*/
-
-
-/*
-
-
-1. They click on something
-
-2. then they click on another square
-
-3. the thing then gets matched.
-
-
-*/
-
-// store the name of the icon
-
-
-// compare it with the next icon
-
-
-// what happens if they match?
-// match gets toggleed open and it no longer responds to clicks.
-
-// what happens if they dont' match?
-// 'open show' gets toggled off
-
-
-
-
-
-
-
-
-
-
 
 
 

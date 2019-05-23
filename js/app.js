@@ -80,11 +80,12 @@ function resetFunc() {
 function runGame(evt) {
   if (evt.target.className !== 'deck') {
 
+    // start the stopwatch
     if (count === 0) {
       interval = window.setInterval(stopWatch, 1000);
-      console.log('interval is' + interval)
     }
 
+    // turn cards' faces
     evt.target.classList.toggle('open');
     evt.target.classList.toggle('show');
     if (evt.target.nodeName.toLowerCase() === 'i') {
@@ -92,9 +93,8 @@ function runGame(evt) {
       evt.target.parentElement.classList.toggle('show');
     }
 
+    // compare the two results
     storage.push(evt.target.firstElementChild);
-    console.log(storage.length);
-
     setTimeout(function() {
       if (storage.length >= 2) {
         if (storage[0].classList[1] !== storage[1].classList[1]) {
@@ -109,6 +109,7 @@ function runGame(evt) {
         }
         storage.length = 0;
       }
+
       count++;
       console.log('count is: '+count);
       document.querySelector('.moves').textContent = 'Number of moves: ' + count;
@@ -119,8 +120,6 @@ function runGame(evt) {
         document.querySelector('li').remove();
         starCount -= 1;
       }
-
-      console.log('score is: ' + score);
 
       if (score === 2) {
         selection.removeEventListener('click', runGame);
@@ -139,15 +138,13 @@ function runGame(evt) {
 
     }, 800);
 
-
-    console.log(storage);
-
-
   }
 };
 
+// add event listener to the reset button
 resetBtn.addEventListener('click', resetFunc);
 
+// add event listener to the cards
 selection.addEventListener('click', runGame);
 
 

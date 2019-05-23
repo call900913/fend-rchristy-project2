@@ -25,6 +25,15 @@ function shuffle(array) {
     return array;
 }
 
+let array1;
+
+// shuffle the deck
+array1 = [];
+document.querySelectorAll('.card').forEach(element => array1.push(element.innerHTML));
+shuffle(array1);
+document.querySelectorAll('.card').forEach((element, index) => {
+  element.innerHTML = array1[index];
+});
 
 const selection = document.querySelector('.deck');
 const resetBtn = document.querySelector('.restart');
@@ -56,7 +65,6 @@ function stopWatch() {
 
 
 function resetFunc() {
-
   score = 0;
   storage = [];
   seconds = 0;
@@ -71,7 +79,13 @@ function resetFunc() {
   document.querySelector('.stars').innerHTML = '<li><i class="fa fa-star"></i></li>\
   <li><i class="fa fa-star"></i></li>\
   <li><i class="fa fa-star"></i></li>';
-
+  // shuffle the deck
+  array1 = [];
+  document.querySelectorAll('.card').forEach(element => array1.push(element.innerHTML));
+  shuffle(array1);
+  document.querySelectorAll('.card').forEach((element, index) => {
+    element.innerHTML = array1[index];
+  });
   selection.addEventListener('click', runGame);
 
 };
@@ -147,13 +161,15 @@ resetBtn.addEventListener('click', resetFunc);
 // add event listener to the cards
 selection.addEventListener('click', runGame);
 
+//
+// .forEach(element => console.log(element.innerHTML));
 
 
 
 
 
 
-
+ //
 
 
 
@@ -237,7 +253,7 @@ Click OK to start a new game.
 1.
 • the game randomly  shuffles the cards
 
-2.
+2. (DONE)
 • modal to ask if user wants to play again?
   prompt or a couple of yes-no buttons.
 • tells the user also how much time it  took to win the game.

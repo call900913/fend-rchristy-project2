@@ -10,6 +10,24 @@
  *   - add each card's HTML to the page
  */
 
+
+
+
+
+
+const selection = document.querySelector('.deck');
+const resetBtn = document.querySelector('.restart');
+let array1;
+let storage = [];
+let score = 0;
+let count = 0;
+let interval;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let starCount = 3;
+let proceed = false;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -25,28 +43,15 @@ function shuffle(array) {
     return array;
 }
 
-let array1;
+function deckShuffle() {
+  array1 = [];
+  document.querySelectorAll('.card').forEach(element => array1.push(element.innerHTML));
+  shuffle(array1);
+  document.querySelectorAll('.card').forEach((element, index) => {
+    element.innerHTML = array1[index];
+  });
+};
 
-// shuffle the deck
-array1 = [];
-document.querySelectorAll('.card').forEach(element => array1.push(element.innerHTML));
-shuffle(array1);
-document.querySelectorAll('.card').forEach((element, index) => {
-  element.innerHTML = array1[index];
-});
-
-const selection = document.querySelector('.deck');
-const resetBtn = document.querySelector('.restart');
-
-let storage = [];
-let score = 0;
-let count = 0;
-let interval;
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
-let starCount = 3;
-let proceed = false;
 
 function stopWatch() {
   seconds++;
@@ -80,14 +85,7 @@ function newGame() {
   <li><i class="fa fa-star"></i></li>\
   <li><i class="fa fa-star"></i></li>';
   // shuffle the deck
-  array1 = [];
-  document.querySelectorAll('.card').forEach(element => array1.push(element.innerHTML));
-  shuffle(array1);
-  document.querySelectorAll('.card').forEach((element, index) => {
-    element.innerHTML = array1[index];
-  });
-  selection.addEventListener('click', runGame);
-
+  deckShuffle();
 };
 
 
@@ -154,6 +152,10 @@ function runGame(evt) {
 
   }
 };
+
+
+// shuffle the deck
+deckShuffle();
 
 // add event listener to the reset button
 resetBtn.addEventListener('click', newGame);

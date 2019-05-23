@@ -27,6 +27,7 @@ let minutes = 0;
 let hours = 0;
 let starCount = 3;
 let proceed = false;
+let count2 = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -76,6 +77,7 @@ function newGame() {
   minutes = 0;
   hours = 0;
   count = 0;
+  count2 = 0;
   window.clearInterval(interval);
 
   document.querySelectorAll('.card').forEach(element => element.className = "card");
@@ -93,20 +95,26 @@ function runGame(evt) {
   if (evt.target.className !== 'deck') {
 
     // start the stopwatch
-    if (count === 0) {
+    if (count2 === 0) {
+      console.log('The count is: ' + count);
       interval = window.setInterval(stopWatch, 1000);
+      count2++;
     }
 
     // turn cards' faces
-    evt.target.classList.toggle('open');
-    evt.target.classList.toggle('show');
-    if (evt.target.nodeName.toLowerCase() === 'i') {
-      evt.target.parentElement.classList.toggle('open');
-      evt.target.parentElement.classList.toggle('show');
+    if (storage.length < 2) {
+      evt.target.classList.toggle('open');
+      evt.target.classList.toggle('show');
+      if (evt.target.nodeName.toLowerCase() === 'i') {
+        evt.target.parentElement.classList.toggle('open');
+        evt.target.parentElement.classList.toggle('show');
+      }
+      if (evt.target.firstElementChild) {
+        storage.push(evt.target.firstElementChild);
+      }
     }
-
     // compare the two results
-    storage.push(evt.target.firstElementChild);
+
     setTimeout(function() {
       if (storage.length >= 2) {
         if (storage[0].classList[1] !== storage[1].classList[1]) {

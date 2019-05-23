@@ -142,6 +142,7 @@ function runGame(evt) {
         Click OK to start a new game.\n\
         Click Cancel to stay on the current page.`);
         if (proceed) {
+          selection.addEventListener('click', runGame);
           newGame();
         } else {
           window.clearInterval(interval);

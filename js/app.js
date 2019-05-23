@@ -133,7 +133,7 @@ function runGame(evt) {
         starCount -= 1;
       }
 
-      if (score === 2) {
+      if (score === 8) {
         selection.removeEventListener('click', runGame);
         let time2 = minutes * 60 + seconds;
         proceed = confirm(`\

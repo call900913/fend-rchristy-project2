@@ -17,7 +17,7 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('../img/pexels-photo-988872.jpeg');
     font-family: 'Coda', cursive;
 }
 
@@ -31,16 +31,23 @@ body {
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 30px;
+    padding-top: 15px;
 }
 
 /*
  * Styles for the deck of cards
  */
-
+.moves {
+  letter-spacing: 1px;
+}
 
 .deck {
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: #fff /* linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%) */;
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -84,9 +91,11 @@ h1 {
  */
 
 .score-panel {
+    color: #fff;
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    margin-right: 47px;
 }
 
 .score-panel .stars {
